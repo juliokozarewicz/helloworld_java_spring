@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @SpringBootApplication
 public class HelloworldApplication {
 
-	public static final String BASE_URL = "/hello-world";
+	public static final String BASE_URL = "/helloworld";
 
 	public static void main(String[] args) {
 		SpringApplication.run(HelloworldApplication.class, args);
