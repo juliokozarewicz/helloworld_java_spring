@@ -3,25 +3,24 @@ package com.juliokozarewicz.helloworld.e_controller;
 import com.juliokozarewicz.helloworld.HelloworldApplication;
 import com.juliokozarewicz.helloworld.d_services.HelloWorldService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
 @RestController
-@RequestMapping(HelloworldApplication.BASE_URL)
+@RequestMapping(HelloworldApplication.BASE_URL_SERVICE)
 class HelloWorldController {
 
-    private final HelloWorldService helloWorldService;
-
     @Autowired
-    public HelloWorldController(HelloWorldService helloWorldService) {
-        this.helloWorldService = helloWorldService;
-    }
+    private HelloWorldService helloWorldService;
 
     @GetMapping("/helloworld")
-    public Map<String, Object> handle() {
-        return helloWorldService.execute();
+    public Map<String, Object> handle(
+        @RequestParam(
+            value = "message", defaultValue = "Hello World!"
+        ) String message
+    ) {
+        return helloWorldService.execute(message);
+
     }
 }
